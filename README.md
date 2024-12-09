@@ -1,2 +1,1 @@
-# zaixs-apparel
-E-Commerce Website
+# ZAIXS APPAREL
