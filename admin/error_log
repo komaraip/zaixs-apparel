@@ -1,1 +1,0 @@
-[24-Sep-2024 12:06:15 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/komaraip/public_html/portfolio/Ujian Level Akhir/connect.php on line 8
