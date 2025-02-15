@@ -8,9 +8,9 @@ Zaixs Apparel is an ongoing e-commerce project. [Website Link](https://project.k
 - **React** (19.0) : A JavaScript library for building user interfaces, maintained by Facebook and a community of individual developers and companies.
 - **Next.js** (15.1.7) : A React framework for production, providing hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more.
 - **Tailwind CSS** (3.4.1) : A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center`, and `rotate-90` that can be composed to build any design, directly in your markup.
-- **Prisma** (6.3.1) : A next-generation ORM for Node.js and TypeScript that helps you build faster and make fewer errors.
-- **Supabase** (1.28.5) : An open-source Firebase alternative that provides all the backend services you need to build a product.
-- **Shadcn-UI** (0.1.0) : A component library for building accessible and customizable UI components.
+- **Prisma** : A next-generation ORM for Node.js and TypeScript that helps you build faster and make fewer errors.
+- **Supabase** : An open-source Firebase alternative that provides all the backend services you need to build a product.
+- **Shadcn-UI** : A component library for building accessible and customizable UI components.
 
 ## Installation
 
