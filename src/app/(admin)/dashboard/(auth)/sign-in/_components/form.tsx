@@ -13,10 +13,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from 'react';
 import { SignIn } from "../lib/actions";
 import { ActionResult } from "@/types";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+
 
 const initialState: ActionResult = {
 	error: "",
@@ -33,7 +35,7 @@ function SubmitButton() {
 }
 
 export default function FormSignIn() {
-	const [state, formAction] = useFormState(SignIn, initialState);
+	const [state, formAction] = useActionState(SignIn, initialState);
 
 	return (
 		<form action={formAction}>
