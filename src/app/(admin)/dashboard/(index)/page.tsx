@@ -1,7 +1,23 @@
-import React from 'react'
+import React from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
   return (
-    <div>Dashboard Page</div>
-  )
+    <div className="space-y-4">
+      <Card x-chunk="dashboard-06-chunk-0">
+        <CardHeader>
+          <CardTitle>Home</CardTitle>
+        </CardHeader>
+        
+        <CardContent>
+          
+        </CardContent>
+      </Card>
+    </div>
+  );
 }

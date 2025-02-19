@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Category } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, ArrowUpDown} from "lucide-react";
+import { Edit, ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import FormDelete from "./_components/form-delete";
 
@@ -26,12 +26,14 @@ export const columns: ColumnDef<Category>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="sm:flex"
         >
           ID
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className="ml-0 h-4 w-4" />
         </Button>
-      )
+      );
     },
+    cell: ({ row }) => row.original.id,
   },
   {
     accessorKey: "name",
@@ -42,9 +44,9 @@ export const columns: ColumnDef<Category>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className="ml-0 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -54,26 +56,12 @@ export const columns: ColumnDef<Category>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="sm:flex"
         >
           Created
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className="ml-0 h-4 w-4" />
         </Button>
-      )
-    },
-    cell: ({ row }) => formatDate(row.original.create_at),
-  },
-  {
-    accessorKey: "updated_at",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Updated
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
+      );
     },
     cell: ({ row }) => formatDate(row.original.create_at),
   },
@@ -83,10 +71,10 @@ export const columns: ColumnDef<Category>[] = [
     cell: ({ row }) => {
       const category = row.original;
       return (
-        <div className="space-x-4 inline-flex">
+        <div className="space-x-2 sm:inline-flex">
           <Button size="sm" asChild>
             <div>
-              <Link href={`/dashboard/locations/edit/${category.id}`}>
+              <Link href={`/dashboard/categories/edit/${category.id}`}>
                 <Edit className="w-4 h-4 mr-0" />
               </Link>
             </div>

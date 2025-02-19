@@ -4,7 +4,13 @@ import React, { useActionState } from "react";
 import Link from "next/link";
 import { AlertCircle, ChevronLeft, PlusCircle, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ActionResult } from "@/types";
@@ -65,7 +71,7 @@ export default function FormLocation({
               <SubmitButton />
             </div>
           </div>
-          <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
+          <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
               <Card x-chunk="dashboard-07-chunk-0">
                 <CardHeader>
@@ -82,6 +88,18 @@ export default function FormLocation({
 
                   <div className="grid gap-6">
                     <div className="grid gap-3">
+                      <Label htmlFor="id">ID</Label>
+                      <Input
+                        id="id"
+                        type="number"
+                        name="id"
+                        className="w-full"
+                        defaultValue={data?.id}
+                        disabled
+                      />
+                    </div>
+
+                    <div className="grid gap-3">
                       <Label htmlFor="name">Name</Label>
                       <Input
                         id="name"
@@ -89,6 +107,55 @@ export default function FormLocation({
                         name="name"
                         className="w-full"
                         defaultValue={data?.name}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
+            <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
+              <Card x-chunk="dashboard-07-chunk-3">
+                <CardHeader>
+                  <CardTitle>Date Details</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {state.error !== "" && (
+                    <Alert variant="destructive" className="mb-4">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{state.error}</AlertDescription>
+                    </Alert>
+                  )}
+
+                  <div className="grid gap-6">
+                    <div className="grid gap-3">
+                      <Label htmlFor="create_at">Created At</Label>
+                      <Input
+                        id="create_at"
+                        type="datetime-local"
+                        name="create_at"
+                        className="w-full"
+                        defaultValue={data?.create_at
+                          ?.toISOString()
+                          .slice(0, 16)}
+                        disabled
+                      />
+                    </div>
+
+                    <div className="grid gap-3">
+                      <Label htmlFor="updated_at">Updated At</Label>
+                      <Input
+                        id="updated_at"
+                        type="datetime-local"
+                        name="updated_at"
+                        className="w-full"
+                        defaultValue={data?.updated_at
+                          ?.toISOString()
+                          .slice(0, 16)}
+                        disabled
                       />
                     </div>
                   </div>

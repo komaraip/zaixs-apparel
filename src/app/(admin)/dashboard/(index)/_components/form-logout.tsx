@@ -2,15 +2,12 @@
 
 import React, { useActionState } from "react";
 import {
-    LogOut,
+  LogOut,
+  User,
 } from "lucide-react";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ActionResult } from "@/types";
-import { useFormState } from "react-dom";
 import { Logout } from "../lib/actions";
 
 const initialState: ActionResult = {
@@ -21,18 +18,29 @@ export default function FormLogout() {
     const [state, formAction] = useActionState(Logout, initialState);
 
     return (
-        <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <form action={formAction}>
-                        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-                            <LogOut className="h-5 w-5" />
-                            <span className="sr-only">Logout</span>
-                        </button>
-                    </form>
-                </TooltipTrigger>
-                <TooltipContent side="right">Logout</TooltipContent>
-            </Tooltip>
-        </nav>
+        <SidebarGroup className="group-data-[collapsible=icon]">
+          <SidebarGroupLabel>Settings</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="/dashboard/settings">
+                  <User />
+                  <span>Account</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <form action={formAction}>
+                <SidebarMenuButton>
+                    <LogOut />
+                    <span>Logout</span>
+                </SidebarMenuButton>
+              </form>
+            </DropdownMenuTrigger>
+          </DropdownMenu>
+        </SidebarGroup>
     );
 }

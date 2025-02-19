@@ -1,43 +1,59 @@
-import React from "react";
+"use client"
+
+import React, { JSX } from "react";
 import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, Slash } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator"
 
 export default function Header() {
-	return (
-		<header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-			<Breadcrumb className="hidden md:flex">
-				<BreadcrumbList>
-					<BreadcrumbItem>
-						<BreadcrumbLink asChild>
-							<Link href="/dashboard">Dashboard</Link>
-						</BreadcrumbLink>
-					</BreadcrumbItem>
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
 
-					<BreadcrumbSeparator />
+  const generateBreadcrumbs = () => {
+    const breadcrumbs: JSX.Element[] = [];
+    let path = "";
 
-					<BreadcrumbItem>
-						<BreadcrumbPage>Home</BreadcrumbPage>
-					</BreadcrumbItem>
-				</BreadcrumbList>
-			</Breadcrumb>
+    pathSegments.forEach((segment, index) => {
+      path += `/${segment}`;
+      breadcrumbs.push(
+        <React.Fragment key={index}>
+          <BreadcrumbItem className="hidden md:block">
+            <BreadcrumbLink asChild>
+              <Link href={path}>
+                {segment.charAt(0).toUpperCase() + segment.slice(1)}
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+		  <BreadcrumbSeparator className="hidden md:block"/>
+        </React.Fragment>
+      );
+    });
 
-			<div className="relative ml-auto flex-1 md:grow-0">
-				<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-				<Input
-					type="search"
-					placeholder="Search..."
-					className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-				/>
-			</div>
-		</header>
-	);
+    return breadcrumbs;
+  };
+
+  return (  
+    <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+      <div className="flex items-center gap-2 px-4">
+        <SidebarTrigger className="-ml-1" />
+        <Separator orientation="vertical" className="mr-2 h-4" />
+        <Breadcrumb>
+          <BreadcrumbList>
+            {generateBreadcrumbs()}
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+    </header>
+  );
 }
