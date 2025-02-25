@@ -20,22 +20,10 @@ export default async function DashboardPage() {
       <Card x-chunk="dashboard-06-chunk-0">
         <CardHeader>
           <CardTitle>Locations Detail</CardTitle>
-          <div className="text-right">
-            <Button size="sm" className="h-8 gap-1" asChild>
-              <Link href="/dashboard/locations/create">
-                <div className="flex items-center gap-1">
-                  <PlusCircle className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add New Locations
-                  </span>
-                </div>
-              </Link>
-            </Button>
-          </div>
         </CardHeader>
         
         <CardContent>
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={data} dynamicSegment="locations"/>
         </CardContent>
       </Card>
     </div>

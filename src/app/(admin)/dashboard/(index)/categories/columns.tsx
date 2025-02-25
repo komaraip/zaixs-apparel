@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Category } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, ArrowUpDown } from "lucide-react";
+import { Edit, ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import FormDelete from "./_components/form-delete";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
+
 
 const formatDate = (date: Date) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -20,22 +22,6 @@ const formatDate = (date: Date) => {
 
 export const columns: ColumnDef<Category>[] = [
   {
-    accessorKey: "id",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="sm:flex"
-        >
-          ID
-          <ArrowUpDown className="ml-0 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => row.original.id,
-  },
-  {
     accessorKey: "name",
     header: ({ column }) => {
       return (
@@ -44,10 +30,11 @@ export const columns: ColumnDef<Category>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name
-          <ArrowUpDown className="ml-0 h-4 w-4" />
+          <ArrowUpDown />
         </Button>
-      );
+      )
     },
+    cell: ({ row }) => row.original.name,
   },
   {
     accessorKey: "create_at",
@@ -66,23 +53,54 @@ export const columns: ColumnDef<Category>[] = [
     cell: ({ row }) => formatDate(row.original.create_at),
   },
   {
-    id: "actions",
-    header: "Actions",
-    cell: ({ row }) => {
-      const category = row.original;
+    accessorKey: "updated_at",
+    header: ({ column }) => {
       return (
-        <div className="space-x-2 sm:inline-flex">
-          <Button size="sm" asChild>
-            <div>
-              <Link href={`/dashboard/categories/edit/${category.id}`}>
-                <Edit className="w-4 h-4 mr-0" />
-              </Link>
-            </div>
-          </Button>
-          
-          <FormDelete id={category.id} />
-        </div>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="sm:flex"
+        >
+          Updated
+          <ArrowUpDown className="ml-0 h-4 w-4" />
+        </Button>
       );
     },
+    cell: ({ row }) => formatDate(row.original.updated_at),
   },
-];
+  {
+    id: "actions",
+    header: "Actions",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const category = row.original
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal />
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem>
+              <Link href={`/dashboard/categories/edit/${category.id}`} >
+                Edit
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem>
+              <FormDelete id={category.id} />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    },
+  },
+]

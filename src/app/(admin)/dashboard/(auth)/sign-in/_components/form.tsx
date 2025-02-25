@@ -16,8 +16,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useActionState } from 'react';
 import { SignIn } from "../lib/actions";
 import { ActionResult } from "@/types";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+
 
 
 const initialState: ActionResult = {
@@ -58,7 +57,7 @@ export default function FormSignIn() {
 					</div>
 					<div className="grid gap-2">
 						<Label htmlFor="password">Password</Label>
-						<Input name="password" id="password" type="password" />
+						<Input name="password" id="password" type="password" placeholder="********"/>
 					</div>
 				</CardContent>
 				<CardFooter>

@@ -15,16 +15,19 @@ interface FormDeleteProps {
 	id: number;
 }
 
-function SubmitButton() {
-	const { pending } = useFormStatus();
+// function SubmitButton() {
+// 	const { pending } = useFormStatus();
 
-	return (
-		<Button type="submit" variant='destructive' size="sm" disabled={pending}>
-			<Trash className="w-4 h-4 mr-0" />
-			{" "}{pending ? "Loading..." : " "}
-		</Button>
-	);
-}
+// 	return (
+// 		<Button type="submit" variant='destructive' size="sm" disabled={pending}>
+// 			<Trash className="w-4 h-4 mr-0" />
+// 			{" "}{pending ? "Loading..." : " "}
+// 		</Button>
+
+// 	);
+// }
+
+
 
 export default function FormDelete({ id }: FormDeleteProps) {
 	const deleteCategoryWithId = (_: unknown, formData: FormData) =>
@@ -35,9 +38,12 @@ export default function FormDelete({ id }: FormDeleteProps) {
 		initialState
 	);
 
+	const { pending } = useFormStatus();
+
 	return (
 		<form action={formAction}>
-			<SubmitButton />
+			Delete
+			{" "}{pending ? "Loading..." : " "}
 		</form>
 	);
 }
