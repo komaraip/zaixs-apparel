@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormLogout from "./form-logout";
 import "../../../../globals.css";
 import {
@@ -29,8 +29,24 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getUserDetails } from "@/app/actions/user";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [user, setUser] = useState<any>(null);
+  
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const userData = await getUserDetails();
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch user", error);
+      }
+    }
+    
+    fetchUser();
+  }, []);
+  
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -47,9 +63,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-semibold">
-                      Apparel Mania
+                      {user ? user.name : "Loading..."}
                     </span>
-                    <span className="text-xs text-muted-foreground">admin@gmail.com
+                    <span className="text-xs text-muted-foreground">
+                    {user ? user.email : ""}
                     </span>
                   </div>
                 </SidebarMenuButton>
