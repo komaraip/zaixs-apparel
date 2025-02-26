@@ -40,24 +40,20 @@ export default function FormSignIn() {
 		<form action={formAction}>
 			<Card className="w-full max-w-sm">
 				<CardHeader>
-					<CardTitle className="text-2xl">Login</CardTitle>
-					<CardDescription>
-						Enter your email below to login to your account.
-					</CardDescription>
+					<CardTitle className="text-2xl text-center">ADMIN DASHBOARD</CardTitle>
 				</CardHeader>
-				<CardContent className="grid gap-4">
-					<div className="grid gap-2">
+				<CardContent className="grid gap-6">
+					<div className="grid gap-4">
 						<Label htmlFor="email">Email</Label>
 						<Input
 							name="email"
 							id="email"
 							type="email"
-							placeholder="m@example.com"
 						/>
 					</div>
-					<div className="grid gap-2">
+					<div className="grid gap-4">
 						<Label htmlFor="password">Password</Label>
-						<Input name="password" id="password" type="password" placeholder="********"/>
+						<Input name="password" id="password" type="password"/>
 					</div>
 				</CardContent>
 				<CardFooter>

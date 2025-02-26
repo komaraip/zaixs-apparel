@@ -11,6 +11,7 @@ import {
   MapPin,
   Package,
   PieChart,
+  Settings,
   ShoppingCart,
 } from "lucide-react";
 
@@ -138,7 +139,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
 
-        <FormLogout />
+        <SidebarGroup className="group-data-[collapsible=icon]">
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="/dashboard/settings">
+                  <Settings />
+                  <span>Settings</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+          
+          <FormLogout />
+        </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
