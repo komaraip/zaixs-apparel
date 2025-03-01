@@ -36,18 +36,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import FormCategory from "@/app/(admin)/dashboard/(index)/categories/_components/form-category";
+import FormLocation from "@/app/(admin)/dashboard/(index)/locations/_components/form-location";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  dynamicSegment: string;
+  formType: "categories" | "locations";
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  dynamicSegment,
+  formType,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
@@ -76,7 +85,18 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
-  
+
+  const renderForm = () => {
+    switch (formType) {
+      case "categories":
+        return <FormCategory type="ADD" />;
+      case "locations":
+        return <FormLocation type="ADD" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -90,12 +110,24 @@ export function DataTable<TData, TValue>({
           suppressHydrationWarning={true}
         />
 
-        <Button variant="outline" className="ml-4 mr-4" asChild>
-          <Link href={`/dashboard/${dynamicSegment}/create`}>
-            <PlusCircle className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only">Add New</span>
-          </Link>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="ml-4">
+              <PlusCircle className="h-3.5 w-3.5" />
+              <span className="sr-only sm:not-sr-only">Add New</span>
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Create New {formType.charAt(0).toUpperCase() + formType.slice(1)}</DialogTitle>
+              <DialogDescription>
+                Fill in the details below to create a new {formType}.
+              </DialogDescription>
+            </DialogHeader>
+            {renderForm()}
+          </DialogContent>
+        </Dialog>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -6,16 +6,31 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Edit, ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import FormDelete from "./_components/form-delete";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
-
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import FormCategory from "./_components/form-category";
 
 const formatDate = (date: Date) => {
   const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   };
   return date.toLocaleDateString(undefined, options);
 };
@@ -32,7 +47,7 @@ export const columns: ColumnDef<Category>[] = [
           Name
           <ArrowUpDown />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => row.original.name,
   },
@@ -73,7 +88,7 @@ export const columns: ColumnDef<Category>[] = [
     header: "Actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const category = row.original
+      const category = row.original;
 
       return (
         <DropdownMenu>
@@ -85,22 +100,38 @@ export const columns: ColumnDef<Category>[] = [
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem>
-              <Link href={`/dashboard/categories/edit/${category.id}`} >
-                Edit
-              </Link>
+            <DropdownMenuItem asChild>
+              <Dialog>
+                <DialogTrigger asChild >
+                  <Button variant="ghost" className="w-full">
+                    <Edit/>
+                    Edit
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Edit Category</DialogTitle>
+                    <DialogDescription>
+                      Modify the details below to edit the category.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <FormCategory type="EDIT" data={category} />
+                </DialogContent>
+              </Dialog>
             </DropdownMenuItem>
+
+            <DropdownMenuSeparator />
 
             <DropdownMenuItem>
               <FormDelete id={category.id} />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];

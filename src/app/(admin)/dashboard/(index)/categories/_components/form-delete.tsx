@@ -3,47 +3,39 @@
 import { Button } from "@/components/ui/button";
 import { ActionResult } from "@/types";
 import { Trash } from "lucide-react";
-import React, { useActionState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { deleteCategory } from "../lib/actions";
 
 const initialState: ActionResult = {
-	error: "",
+  error: "",
 };
 
 interface FormDeleteProps {
-	id: number;
+  id: number;
 }
 
-// function SubmitButton() {
-// 	const { pending } = useFormStatus();
-
-// 	return (
-// 		<Button type="submit" variant='destructive' size="sm" disabled={pending}>
-// 			<Trash className="w-4 h-4 mr-0" />
-// 			{" "}{pending ? "Loading..." : " "}
-// 		</Button>
-
-// 	);
-// }
-
-
-
 export default function FormDelete({ id }: FormDeleteProps) {
-	const deleteCategoryWithId = (_: unknown, formData: FormData) =>
-		deleteCategory(_, formData, id);
+  const { handleSubmit, formState: { isSubmitting } } = useForm();
+  const [state, setState] = useState(initialState);
 
-	const [state, formAction] = useActionState(
-		deleteCategoryWithId,
-		initialState
-	);
+  const onSubmit = async () => {
+    try {
+      await deleteCategory(undefined, new FormData(), id);
+      setState({ error: "" });
+    } catch (error) {
+      setState({ error: (error as any).message });
+    }
+  };
 
-	const { pending } = useFormStatus();
-
-	return (
-		<form action={formAction}>
-			Delete
-			{" "}{pending ? "Loading..." : " "}
-		</form>
-	);
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Button type="submit" variant="destructive" className="w-full" disabled={isSubmitting}>
+        <Trash />
+        Delete
+        {isSubmitting ? " Loading..." : ""}
+      </Button>
+      {state.error && <p className="text-red-500">{state.error}</p>}
+    </form>
+  );
 }

@@ -8,9 +8,6 @@ import {
 } from "@/components/ui/card";
 import { columns } from "./columns";
 import { getLocations } from "./lib/data";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { PlusCircle } from "lucide-react";
 
 export default async function DashboardPage() {
   const data = await getLocations();
@@ -23,7 +20,7 @@ export default async function DashboardPage() {
         </CardHeader>
         
         <CardContent>
-          <DataTable columns={columns} data={data} dynamicSegment="locations"/>
+          <DataTable columns={columns} data={data} formType="locations"/>
         </CardContent>
       </Card>
     </div>
