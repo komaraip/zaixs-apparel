@@ -50,7 +50,7 @@ import FormLocation from "@/app/(admin)/dashboard/(index)/locations/_components/
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  formType: "categories" | "locations";
+  formType: "categories" | "locations" | "customers";
 }
 
 export function DataTable<TData, TValue>({
@@ -110,24 +110,26 @@ export function DataTable<TData, TValue>({
           suppressHydrationWarning={true}
         />
 
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="ml-4">
-              <PlusCircle className="h-3.5 w-3.5" />
-              <span className="sr-only sm:not-sr-only">Add New</span>
-            </Button>
-          </DialogTrigger>
+        {(formType === "categories" || formType === "locations") && (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="ml-4">
+                <PlusCircle className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only">Add New</span>
+              </Button>
+            </DialogTrigger>
 
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Create New {formType.charAt(0).toUpperCase() + formType.slice(1)}</DialogTitle>
-              <DialogDescription>
-                Fill in the details below to create a new {formType}.
-              </DialogDescription>
-            </DialogHeader>
-            {renderForm()}
-          </DialogContent>
-        </Dialog>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Create New {formType.charAt(0).toUpperCase() + formType.slice(1)}</DialogTitle>
+                <DialogDescription>
+                  Fill in the details below to create a new {formType}.
+                </DialogDescription>
+              </DialogHeader>
+              {renderForm()}
+            </DialogContent>
+          </Dialog>
+        )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
