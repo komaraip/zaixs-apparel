@@ -1,3 +1,4 @@
+//          CODE ONE
 // import { PrismaClient} from "@prisma/client"
 
 // let prisma: PrismaClient
@@ -18,21 +19,68 @@
 
 // export default prisma
 
+//          CODE TWO
+// import { PrismaClient } from "@prisma/client"
+
+// declare global {
+//   var prisma: PrismaClient | undefined
+// }
+
+// let prisma: PrismaClient
+
+// if (process.env.NODE_ENV === "production") {
+//   prisma = new PrismaClient()
+// } else {
+//   if (!global.prisma) {
+//     global.prisma = new PrismaClient()
+//   }
+//   prisma = global.prisma
+// }
+
+// export default prisma
+
+//          CODE THREE
 import { PrismaClient } from "@prisma/client"
 
 declare global {
   var prisma: PrismaClient | undefined
 }
 
-let prisma: PrismaClient
+const loadEnvVars = () => {
+  if (!process.env.DATABASE_URL) {
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      const envFile = fs.readFileSync(path.join(process.cwd(), '.env'), 'utf-8');
+      
+      envFile.split('\n').forEach((line: string) => {
+        const match = line.match(/^(\w+)=(.*)$/);
+        if (match) {
+          const [, key, value] = match;
+          if (key && !process.env[key]) {
+            process.env[key] = value.replace(/^["']|["']$/g, '');
+          }
+        }
+      });
+    } catch (error) {
+      console.warn('Failed to load .env file directly:', error);
+    }
+  }
+};
+
+loadEnvVars();
+
+let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient()
+  prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
-    global.prisma = new PrismaClient()
+    global.prisma = new PrismaClient({
+      log: ['query', 'error', 'warn'],
+    });
   }
-  prisma = global.prisma
+  prisma = global.prisma;
 }
 
-export default prisma
+export default prisma;
