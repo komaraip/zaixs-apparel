@@ -9,16 +9,16 @@ import { Label } from "@/components/ui/label";
 import { ActionResult } from "@/types";
 import { useFormStatus } from "react-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Category } from "@prisma/client";
-import { postCategory, updateCategory } from "../lib/actions";
+import { Brand } from "@prisma/client";
+import { postBrand, updateBrand } from "../lib/actions";
 
 const initialState: ActionResult = {
   error: "",
 };
 
-interface FormCategoryProps {
+interface FormBrandProps {
   type?: "ADD" | "EDIT";
-  data?: Category | null;
+  data?: Brand | null;
 }
 
 function SubmitButton() {
@@ -26,20 +26,20 @@ function SubmitButton() {
 
   return (
     <Button type="submit" size="sm" disabled={pending}>
-      {pending ? "Loading..." : "Save Category"}
+      {pending ? "Loading..." : "Save Brand"}
     </Button>
   );
 }
 
-export default function FormCategory({
+export default function FormBrand({
   data = null,
   type = "ADD",
-}: FormCategoryProps) {
-  const updateCategoryWithId = (_: unknown, formData: FormData) =>
-    updateCategory(_, formData, data?.id);
+}: FormBrandProps) {
+  const updateWithId = (_: unknown, formData: FormData) =>
+    updateBrand(_, formData, data?.id ?? 0);
 
   const [state, formAction] = useActionState(
-    type === "ADD" ? postCategory : updateCategoryWithId,
+    type === "ADD" ? postBrand : updateWithId,
     initialState
   );
 
@@ -48,7 +48,6 @@ export default function FormCategory({
   return (
     <form action={formAction}>
       <Card x-chunk="dashboard-07-chunk-0">
-        
         <CardContent>
           {state.error !== "" && (
             <Alert variant="destructive" className="mb-4">
@@ -68,10 +67,25 @@ export default function FormCategory({
                 className="w-full"
                 defaultValue={data?.name}
               />
+            </div>{" "}
+            <div className="grid gap-3">
+              <Label htmlFor="logo">Logo</Label>
+              <Input
+                id="logo"
+                type="file"
+                name="image"
+                className="w-full"
+                accept="image/jpeg, image/jpg, image/png"
+                required={type === "ADD"}
+              />
+              {type === "EDIT" && data?.logo && (
+                <p className="text-sm text-muted-foreground">
+                  Current logo: {data.logo}
+                </p>
+              )}
             </div>
-
             <Button type="submit" size="sm" disabled={pending}>
-              {pending ? "Loading..." : "Save Category"}
+              {pending ? "Loading..." : "Save Brand"}
             </Button>
           </div>
         </CardContent>

@@ -1,16 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Category } from "@prisma/client";
+import { getImageUrl } from "@/lib/supabase";
+import { Brand } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, Edit, MoreHorizontal } from "lucide-react";
+import Image from "next/image";
 import {
   DropdownMenu,
+  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import {
   Dialog,
@@ -20,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import FormCategory from "./_components/form-category";
+import FormBrand from "./_components/form-brand";
 import FormDelete from "./_components/form-delete";
 
 const formatDate = (date: Date) => {
@@ -34,7 +36,7 @@ const formatDate = (date: Date) => {
   return date.toLocaleDateString(undefined, options);
 };
 
-export const columns: ColumnDef<Category>[] = [
+export const columns: ColumnDef<Brand>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -48,7 +50,20 @@ export const columns: ColumnDef<Category>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.original.name,
+    cell: ({ row }) => {
+      const brand = row.original;
+      return (
+        <div className="inline-flex items-center gap-5">
+          <Image
+            src={getImageUrl(brand.logo)}
+            alt="Product"
+            width={80}
+            height={80}
+          />
+          <span>{brand.name}</span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "create_at",
@@ -87,7 +102,7 @@ export const columns: ColumnDef<Category>[] = [
     header: "Actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const category = row.original;
+      const brand = row.original;
 
       return (
         <DropdownMenu>
@@ -99,26 +114,28 @@ export const columns: ColumnDef<Category>[] = [
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
+            <DropdownMenuLabel className="text-center">
+              Actions
+            </DropdownMenuLabel>
 
             <DropdownMenuSeparator />
 
             <DropdownMenuItem asChild>
               <Dialog>
-                <DialogTrigger asChild >
+                <DialogTrigger asChild>
                   <Button variant="ghost" className="w-full">
-                    <Edit/>
+                    <Edit />
                     Edit
-                    </Button>
+                  </Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Edit Category</DialogTitle>
+                    <DialogTitle>Edit Brand</DialogTitle>
                     <DialogDescription>
-                      Modify the details below to edit the category.
+                      Modify the details below to edit the brand.
                     </DialogDescription>
                   </DialogHeader>
-                  <FormCategory type="EDIT" data={category} />
+                  <FormBrand type="EDIT" data={brand} />
                 </DialogContent>
               </Dialog>
             </DropdownMenuItem>
@@ -126,7 +143,7 @@ export const columns: ColumnDef<Category>[] = [
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-              <FormDelete id={category.id} />
+              <FormDelete id={brand.id} />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

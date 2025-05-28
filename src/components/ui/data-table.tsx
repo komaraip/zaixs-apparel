@@ -46,11 +46,12 @@ import {
 } from "@/components/ui/dialog"
 import FormCategory from "@/app/(admin)/dashboard/(index)/categories/_components/form-category";
 import FormLocation from "@/app/(admin)/dashboard/(index)/locations/_components/form-location";
+import FormBrand from "@/app/(admin)/dashboard/(index)/brands/_components/form-brand";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  formType: "categories" | "locations" | "customers";
+  formType: "categories" | "locations" | "brands" | "customers";
 }
 
 export function DataTable<TData, TValue>({
@@ -92,6 +93,8 @@ export function DataTable<TData, TValue>({
         return <FormCategory type="ADD" />;
       case "locations":
         return <FormLocation type="ADD" />;
+      case "brands":
+        return <FormBrand type="ADD" />;
       default:
         return null;
     }
@@ -110,7 +113,7 @@ export function DataTable<TData, TValue>({
           suppressHydrationWarning={true}
         />
 
-        {(formType === "categories" || formType === "locations") && (
+        {(formType === "categories" || formType === "locations" || formType === "brands") && (
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" className="ml-4">
