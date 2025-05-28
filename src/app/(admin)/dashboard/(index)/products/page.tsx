@@ -6,36 +6,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { columns } from "./columns";
-// import { getLocations } from "./lib/data";
+import { getProducts } from "./lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PlusCircle } from "lucide-react";
+import { columns } from "./columns";
 
 export default async function DashboardPage() {
-  // const data = await getLocations();
+  const data = await getProducts();
 
   return (
     <div className="space-y-4">
       <Card x-chunk="dashboard-06-chunk-0">
         <CardHeader>
           <CardTitle>Products Detail</CardTitle>
-          <div className="text-right">
-            <Button size="sm" className="h-8 gap-1" asChild>
-              <Link href="/dashboard/locations/create">
-                <div className="flex items-center gap-1">
-                  <PlusCircle className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add New Product
-                  </span>
-                </div>
-              </Link>
-            </Button>
-          </div>
         </CardHeader>
-        
+
         <CardContent>
-          {/* <DataTable columns={columns} data={data} /> */}
+          <DataTable columns={columns} data={data} formType="products" />
         </CardContent>
       </Card>
     </div>

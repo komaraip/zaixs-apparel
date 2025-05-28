@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState, useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,6 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Brand, Category, Location } from "@prisma/client";
 import {
   ArrowUpDown,
   ChevronDown,
@@ -43,15 +45,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import FormCategory from "@/app/(admin)/dashboard/(index)/categories/_components/form-category";
 import FormLocation from "@/app/(admin)/dashboard/(index)/locations/_components/form-location";
 import FormBrand from "@/app/(admin)/dashboard/(index)/brands/_components/form-brand";
+import FormProduct from "@/app/(admin)/dashboard/(index)/products/_components/form-product";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  formType: "categories" | "locations" | "brands" | "customers";
+  formType: "categories" | "locations" | "brands" | "products" | "customers";
 }
 
 export function DataTable<TData, TValue>({
@@ -60,13 +63,13 @@ export function DataTable<TData, TValue>({
   formType,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const table = useReactTable({
     data,
@@ -86,7 +89,6 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
-
   const renderForm = () => {
     switch (formType) {
       case "categories":
@@ -95,6 +97,8 @@ export function DataTable<TData, TValue>({
         return <FormLocation type="ADD" />;
       case "brands":
         return <FormBrand type="ADD" />;
+      case "products":
+        return <FormProduct type="ADD" />;
       default:
         return null;
     }
@@ -113,30 +117,46 @@ export function DataTable<TData, TValue>({
           suppressHydrationWarning={true}
         />
 
-        {(formType === "categories" || formType === "locations" || formType === "brands") && (
+        {(formType === "categories" ||
+          formType === "locations" ||
+          formType === "brands" ||
+          formType === "products") && (
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" className="ml-4">
                 <PlusCircle className="h-3.5 w-3.5" />
                 <span className="sr-only sm:not-sr-only">Add New</span>
               </Button>
-            </DialogTrigger>
-
+            </DialogTrigger>{" "}
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Create New {formType.charAt(0).toUpperCase() + formType.slice(1)}</DialogTitle>
+                <DialogTitle>
+                  Create New{" "}
+                  {formType.charAt(0).toUpperCase() + formType.slice(1)}
+                </DialogTitle>
                 <DialogDescription>
                   Fill in the details below to create a new {formType}.
                 </DialogDescription>
               </DialogHeader>
-              {renderForm()}
+              {formType === "products" && isLoading ? (
+                <div className="flex items-center justify-center p-6">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <span className="ml-2">Loading data...</span>
+                </div>
+              ) : (
+                renderForm()
+              )}
             </DialogContent>
           </Dialog>
         )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto" suppressHydrationWarning={true}>
+            <Button
+              variant="outline"
+              className="ml-auto"
+              suppressHydrationWarning={true}
+            >
               Filter Columns
               <ChevronDown />
             </Button>
