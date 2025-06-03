@@ -50,7 +50,7 @@ import FormProduct from "@/app/(admin)/dashboard/(index)/products/_components/fo
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  formType: "categories" | "locations" | "brands" | "products" | "customers";
+  formType: "categories" | "locations" | "brands" | "products" | "orders" | "customers";
 }
 
 export function DataTable<TData, TValue>({
@@ -168,6 +168,8 @@ export function DataTable<TData, TValue>({
         return <FormBrand type="ADD" />;
       case "products":
         return <ProductFormWithDialog />;
+      case "orders":
+        return <div>Orders form not implemented yet.</div>;
       default:
         return null;
     }
