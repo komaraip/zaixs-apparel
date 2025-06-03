@@ -2,11 +2,18 @@ import { NextResponse } from "next/server";
 import prisma from "../../../../../lib/prisma";
 import { ProductStock } from "@prisma/client";
 
+// Define route context with Promise-based params as required by Next.js 15.1.7
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
+
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
+    // Resolve params from the Promise
+    const params = await context.params;
     const id = Number(params.id);
     
     const product = await prisma.product.findUnique({
@@ -41,9 +48,11 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
+    // Resolve params from the Promise
+    const params = await context.params;
     const id = Number(params.id);
     const body = await request.json();
     
@@ -95,9 +104,11 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
+    // Resolve params from the Promise
+    const params = await context.params;
     const id = Number(params.id);
 
     await prisma.product.delete({

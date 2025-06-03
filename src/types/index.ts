@@ -7,6 +7,12 @@ export type Tparams = {
 	id: string;
 };
 
+// Updated to match Next.js 15's expected types
+export type PageProps = {
+	params?: Promise<Record<string, string | string[]>> | Record<string, string | string[]>;
+	searchParams?: Promise<Record<string, string | string[]>> | Record<string, string | string[]>;
+};
+
 export type Tedit = {
 	params: Tparams;
 };

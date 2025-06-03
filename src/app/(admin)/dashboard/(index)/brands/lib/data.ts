@@ -5,8 +5,7 @@ export async function getBrands() {
 		const brands = await prisma.brand.findMany({});
 
 		return brands;
-	} catch (error) {
-		// console.log(error);
+	} catch {
 		return [];
 	}
 }
@@ -20,8 +19,7 @@ export async function getBrandById(id: string) {
 		});
 
 		return brand;
-	} catch (error) {
-		// console.log(error);
+	} catch {
 		return null;
 	}
 }

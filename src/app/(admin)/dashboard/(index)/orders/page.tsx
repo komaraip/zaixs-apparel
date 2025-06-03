@@ -1,17 +1,12 @@
 import React from "react";
-import { DataTable } from "@/components/ui/data-table";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { columns } from "./columns";
-// import { getLocations } from "./lib/data";
 
 export default async function DashboardPage() {
-  // const data = await getLocations();
-
   return (
     <div className="space-y-4">
       <Card x-chunk="dashboard-06-chunk-0">
@@ -20,7 +15,7 @@ export default async function DashboardPage() {
         </CardHeader>
         
         <CardContent>
-          {/* <DataTable columns={columns} data={data} /> */}
+          
         </CardContent>
       </Card>
     </div>

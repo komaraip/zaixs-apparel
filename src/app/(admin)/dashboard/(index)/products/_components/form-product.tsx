@@ -1,15 +1,13 @@
 "use client";
 
-import React, { ReactNode, useActionState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertCircle } from "lucide-react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { toast } from "sonner";
 import {
 	Select,
 	SelectContent,
@@ -53,7 +51,6 @@ export default function FormProduct({
 	brands = [],
 	locations = [],
 }: FormProductProps) {
-	const router = useRouter();
 	const updateProductWithId = (_: unknown, formData: FormData) =>
 		updateProduct(_, formData, data?.id ?? 0);
 

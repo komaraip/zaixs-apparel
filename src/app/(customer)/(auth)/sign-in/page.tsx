@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { signIn } from "../lib/actions";
 import Link from "next/link";
+import Image from "next/image";
 
 const initialFormState: ActionResult = {
 	error: "",
@@ -40,7 +41,7 @@ export default function SignInPage() {
 		>
 			<div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center py-5">
 				<div className="flex justify-center mb-8">
-					<img src="./assets/logos/logo-za.png" alt="logo" className="w-[300px] h-auto" />
+					<Image src="./assets/logos/logo-za.png" alt="logo" className="w-[300px] h-auto" />
 				</div>
 
 				<form
@@ -60,7 +61,7 @@ export default function SignInPage() {
 
 					<div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
 						<div className="flex shrink-0">
-							<img src="./assets/icons/sms.svg" alt="icon" />
+							<Image src="./assets/icons/sms.svg" alt="icon" />
 						</div>
 						<input
 							type="email"
@@ -73,7 +74,7 @@ export default function SignInPage() {
 					<div className="flex flex-col gap-[10px]">
 						<div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
 							<div className="flex shrink-0">
-								<img src="./assets/icons/lock.svg" alt="icon" />
+								<Image src="./assets/icons/lock.svg" alt="icon" />
 							</div>
 							<input
 								type={showPassword ? "text" : "password"}
@@ -88,7 +89,7 @@ export default function SignInPage() {
 								className="reveal-password flex shrink-0"
 								aria-label={showPassword ? "Hide password" : "Show password"}
 							>
-								<img 
+								<Image
 									src={showPassword ? "./assets/icons/eye.svg" : "./assets/icons/eye.svg"} 
 									alt={showPassword ? "Hide password" : "Show password"} 
 								/>
@@ -97,8 +98,7 @@ export default function SignInPage() {
 						<a href="#" className="text-sm text-[#616369] underline w-fit mr-2 ml-auto">Forgot Password?</a>
 					</div>
 					<div className="flex flex-col gap-3">
-						<SubmitButton />
-						<h4 className="font-semibold text-center">Don't have an account? 
+						<SubmitButton />						<h4 className="font-semibold text-center">Don&apos;t have an account? 
 							<Link href="/sign-up" className="underline"> Sign Up</Link>
 						</h4>
 					</div>

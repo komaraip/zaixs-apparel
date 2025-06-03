@@ -21,16 +21,6 @@ interface FormCategoryProps {
   data?: Category | null;
 }
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" size="sm" disabled={pending}>
-      {pending ? "Loading..." : "Save Category"}
-    </Button>
-  );
-}
-
 export default function FormCategory({
   data = null,
   type = "ADD",

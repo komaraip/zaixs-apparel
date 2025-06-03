@@ -21,16 +21,6 @@ interface FormBrandProps {
   data?: Brand | null;
 }
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" size="sm" disabled={pending}>
-      {pending ? "Loading..." : "Save Brand"}
-    </Button>
-  );
-}
-
 export default function FormBrand({
   data = null,
   type = "ADD",

@@ -104,7 +104,7 @@ export async function POST(request: Request) {
 
         return Response.json(response)
 
-    } catch (error) {
+    } catch {
         // console.log(error);
         return Response.json({status: false}, {status: 500})
     }

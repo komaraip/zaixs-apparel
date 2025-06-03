@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -14,11 +13,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Brand, Category, Location } from "@prisma/client";
 import {
-  ArrowUpDown,
   ChevronDown,
-  MoreHorizontal,
   PlusCircle,
 } from "lucide-react";
 

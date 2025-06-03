@@ -210,8 +210,7 @@ export async function deleteBrand(
 				id: id,
 			},
 		});
-	} catch (error) {
-		// console.log(error);
+	} catch {
 		return {
 			error: "Failed to delete Data",
 		};

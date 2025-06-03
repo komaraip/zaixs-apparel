@@ -7,7 +7,6 @@ import {
   Archive,
   BookUser,
   Building,
-  GalleryVerticalEnd,
   MapPin,
   Package,
   PieChart,
@@ -34,7 +33,12 @@ import { getUserDetails } from "@/app/actions/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+  } | null>(null);
   
   useEffect(() => {
     async function fetchUser() {

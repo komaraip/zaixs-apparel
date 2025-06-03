@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Category } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import FormDelete from "./_components/form-delete";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";

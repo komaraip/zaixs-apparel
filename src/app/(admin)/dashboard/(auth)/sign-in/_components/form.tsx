@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
@@ -12,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { useActionState } from 'react';
 import { SignIn } from "../lib/actions";
 import { ActionResult } from "@/types";
@@ -34,7 +33,7 @@ function SubmitButton() {
 }
 
 export default function FormSignIn() {
-	const [state, formAction] = useActionState(SignIn, initialState);
+	const [, formAction] = useActionState(SignIn, initialState);
 
 	return (
 		<form action={formAction}>

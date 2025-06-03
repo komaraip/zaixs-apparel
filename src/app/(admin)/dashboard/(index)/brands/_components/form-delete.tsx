@@ -25,9 +25,8 @@ export default function FormDelete({ id }: FormDeleteProps) {
 	const onSubmit = async () => {
 		try {
 			await deleteBrand(undefined, new FormData(), id);
-			setState({ error: "" });
-		} catch (error) {
-			setState({ error: (error as any).message });
+			setState({ error: "" });		} catch (error) {
+			setState({ error: (error as Error).message });
 		}
 	};
 

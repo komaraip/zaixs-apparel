@@ -4,9 +4,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["hfrwlhcwcnhbwbuvqoqz.supabase.co"],
   },
-  serverActions: {
-    // Setting the body size limit to 50MB for handling larger image uploads
-    bodySizeLimit: 50 * 1024 * 1024, // 50MB in bytes
+  experimental: {
+    serverActions: {
+      // Setting the body size limit to 50MB for handling larger image uploads
+      bodySizeLimit: 50 * 1024 * 1024, // 50MB in bytes
+    },
   },
 };
 

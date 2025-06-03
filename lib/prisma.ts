@@ -40,7 +40,9 @@
 // export default prisma
 
 //          CODE THREE
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
+import fs from 'fs';
+import path from 'path';
 
 declare global {
   var prisma: PrismaClient | undefined
@@ -49,8 +51,6 @@ declare global {
 const loadEnvVars = () => {
   if (!process.env.DATABASE_URL) {
     try {
-      const fs = require('fs');
-      const path = require('path');
       const envFile = fs.readFileSync(path.join(process.cwd(), '.env'), 'utf-8');
       
       envFile.split('\n').forEach((line: string) => {

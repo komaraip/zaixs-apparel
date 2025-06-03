@@ -59,8 +59,7 @@ export async function storeProduct(
                 return {
                     error: "Failed to upload image. Please try again."
                 }
-            }
-        } const newProduct = await prisma.product.create({
+            }        } await prisma.product.create({
             data: {
                 name: parse.data.name,
                 description: parse.data.description,
@@ -71,7 +70,7 @@ export async function storeProduct(
                 stock: parse.data.stock as ProductStock,
                 images: filenames
             }
-        }); 
+        });
         // console.log("Product created successfully:", newProduct.id);
 
         return { error: "" };
@@ -146,8 +145,7 @@ export async function updateProduct(
                 }
             }
         } else {
-            filenames = product.images
-        } const updatedProduct = await prisma.product.update({
+            filenames = product.images        } await prisma.product.update({
             where: {
                 id: id
             },
@@ -161,7 +159,7 @@ export async function updateProduct(
                 stock: parse.data.stock as ProductStock,
                 images: filenames
             }
-        }); 
+        });
         
         // console.log("Product updated successfully:", updatedProduct.id);
 

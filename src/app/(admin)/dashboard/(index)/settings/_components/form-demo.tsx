@@ -41,10 +41,17 @@ type FormValues = z.infer<typeof formSchema>;
 
 interface FormUserProps {
   type?: "ADD" | "EDIT";
-  data?: any | null;
+  data?: {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    create_at: Date;
+    updated_at: Date;
+  } | null;
 }
 
-export default function FormUser({ data = null, type = "EDIT" }: FormUserProps) {
+export default function FormUser({ data = null }: FormUserProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -67,12 +74,16 @@ export default function FormUser({ data = null, type = "EDIT" }: FormUserProps) 
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
-      
-      // Always include password field in FormData, even if empty
+        // Always include password field in FormData, even if empty
       // The server will handle whether to update it or not
       formData.append("password", values.password || "");
 
-      const result = await updateAdminUser(formData, data?.id);
+      if (!data?.id) {
+        setError("User ID is required");
+        return;
+      }
+
+      const result = await updateAdminUser(formData, data.id);
 
       if (result.error) {
         setError(result.error);

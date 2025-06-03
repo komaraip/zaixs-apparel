@@ -61,41 +61,39 @@ export async function storeOrder(
                 },
                 reusability: "ONE_TIME_USE",
                 type: "EWALLET"
-            },
-            currency: "IDR",
+            },            currency: "IDR",
             referenceId: order.code
-        }
-
+        };
+        
         const response: PaymentRequest = await xenditClient.PaymentRequest.createPaymentRequest({
             data
         })
 
-        redirectPaymentUrl = response.actions?.find((val) => val.urlType === "DEEPLINK")?.url ?? "/"
-
+        redirectPaymentUrl = response.actions?.find((val) => val.urlType === "DEEPLINK")?.url ?? "/";
+        
         const queryCreateProductOrder: Prisma.OrderProductCreateManyInput[] = []
 
         for (const product of products) {
             queryCreateProductOrder.push({
                 order_id: order.id,
-                product_id: product.id,
-                quantity: product.quantity,
-                subtotal: product.price
+                product_id: product.id,            quantity: product.quantity,
+                subtotal: product.price,
+                code: `ITEM-${order.code}-${product.id}` // Add the required code field
             })
         }
-
+        
         await prisma.orderProduct.createMany({
             data: queryCreateProductOrder
-        })
-
-        await prisma.orderDetail.create({
+        });
+          await prisma.orderDetail.create({
             data: {
                 address: parse.data.address,
                 city: parse.data.city,
-                name: parse.data.name,
                 phone: parse.data.phone,
                 postal_code: parse.data.postal_code,
-                notes: parse.data.notes,
-                order_id: order.id
+                notes: parse.data.notes ?? "", // Provide default empty string when notes is null
+                order_id: order.id,
+                code: `DETAIL-${order.code}` // Add the required code field for OrderDetail
             }
         })
 

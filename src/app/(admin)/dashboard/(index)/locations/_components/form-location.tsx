@@ -2,19 +2,18 @@
 
 import React, { useActionState } from "react";
 import Link from "next/link";
-import { AlertCircle, ChevronLeft, PlusCircle, Upload } from "lucide-react";
+import { AlertCircle, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ActionResult } from "@/types";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Location } from "@prisma/client";
 import { postLocation, updateLocation } from "../lib/actions";

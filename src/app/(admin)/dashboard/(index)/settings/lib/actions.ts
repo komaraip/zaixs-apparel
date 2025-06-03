@@ -1,9 +1,8 @@
-// src/app/(admin)/dashboard/(index)/settings/lib/actions.ts
+
 "use server";
 
 import { z } from "zod";
-import { redirect } from "next/navigation";
-import prisma from "../../../../../../../lib/prisma"; // Adjust this import path to your prisma client
+import prisma from "../../../../../../../lib/prisma";
 
 // Update schema for admin - making password truly optional
 const updateAdminSchema = z.object({
@@ -62,10 +61,12 @@ export async function updateAdminUser(
       return {
         error: "Not authorized to update this account",
       };
-    }
-
-    // Create update data object with only the required fields
-    const updateData: any = {
+    }    // Create update data object with only the required fields
+    const updateData: {
+      name: string;
+      email: string;
+      password?: string;
+    } = {
       name: validate.data.name,
       email: validate.data.email,
     };
@@ -84,12 +85,11 @@ export async function updateAdminUser(
       data: updateData,
     });
 
-    return { success: true };
-  } catch (error: any) {
+    return { success: true };  } catch (error: unknown) {
     console.error("Failed to update admin:", error);
     
     // Handle unique constraint errors (e.g., email already exists)
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return {
         error: "This email is already in use",
       };

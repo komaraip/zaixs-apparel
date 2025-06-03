@@ -11,13 +11,6 @@ export default function UploadImages() {
 	const imageSecondRef = useRef<HTMLImageElement>(null)
 	const [hasImages, setHasImages] = useState(false)
 
-
-	const openFolder = () => {
-		if (ref.current) {
-			ref.current.click()
-		}
-	}
-
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		if (!thumbnailRef.current || !imageFirstRef.current || !imageSecondRef.current) {
 			return;

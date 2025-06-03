@@ -35,7 +35,7 @@ function SubmitButton() {
 
 export default function FormDelete({ id }: FormDeleteProps) {
 	const router = useRouter();
-	const [isDeleting, setIsDeleting] = useState(false);
+	const [, setIsDeleting] = useState(false);
 	
 	const deleteCategoryWithId = async (_: unknown, formData: FormData) => {
 		setIsDeleting(true);

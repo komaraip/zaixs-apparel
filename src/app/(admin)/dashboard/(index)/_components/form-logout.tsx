@@ -14,7 +14,7 @@ const initialState: ActionResult = {
 };
 
 export default function FormLogout() {
-    const [state, formAction] = useActionState(Logout, initialState);
+    const [, formAction] = useActionState(Logout, initialState);
 
     return (
           <DropdownMenu>
