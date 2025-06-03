@@ -174,19 +174,41 @@ export function DataTable<TData, TValue>({
         return null;
     }
   };
+  // Helper function to get the filter column and placeholder based on form type
+  const getFilterConfig = () => {
+    switch (formType) {
+      case "orders":
+        return {
+          columnId: "customer_name",
+          placeholder: "Filter customer name..."
+        };
+      case "customers":
+        return {
+          columnId: "customer_name",
+          placeholder: "Filter customer name..."
+        };
+      default:
+        return {
+          columnId: "name",
+          placeholder: "Filter name..."
+        };
+    }
+  };
+
+  const filterConfig = getFilterConfig();
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter name..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          placeholder={filterConfig.placeholder}
+          value={(table.getColumn(filterConfig.columnId)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn(filterConfig.columnId)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
           suppressHydrationWarning={true}
-        />        
+        />
         {(formType === "categories" ||
           formType === "locations" ||
           formType === "brands" ||

@@ -1,9 +1,11 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { rupiahFormat } from "@/lib/utils"
 import { StatusOrder } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
+import { ArrowUpDown } from "lucide-react"
 import Image from "next/image"
 
 type TProduct = {
@@ -22,7 +24,17 @@ export type TColumn = {
 export const columns: ColumnDef<TColumn>[] = [
   {
     accessorKey: 'products',
-    header: 'Products',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Products
+          <ArrowUpDown />
+        </Button>
+      );
+    },
     cell: ({row}) => {
       const order = row.original
 
@@ -45,16 +57,46 @@ export const columns: ColumnDef<TColumn>[] = [
   },
   {
     accessorKey: 'customer_name',
-    header: 'Customer name'
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Customer Name
+          <ArrowUpDown />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'price',
-    header: 'Total Price',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Total Price
+          <ArrowUpDown />
+        </Button>
+      );
+    },
     cell: ({row}) => rupiahFormat(row.original.price)
   },
   {
     accessorKey: 'status',
-    header: 'Status Order',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status Order
+          <ArrowUpDown />
+        </Button>
+      );
+    },
     cell: ({row}) => {
       return (
         <Badge variant={row.original.status === "failed" ? "destructive" : "default"}>
