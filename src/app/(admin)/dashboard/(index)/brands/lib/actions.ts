@@ -185,7 +185,7 @@ export async function deleteBrand(
 	formData: FormData,
 	id: number
 ): Promise<ActionResult> {
-	console.log(id);
+	// console.log(id);
 
 	const brand = await prisma.brand.findFirst({
 		where: {
@@ -211,7 +211,7 @@ export async function deleteBrand(
 			},
 		});
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		return {
 			error: "Failed to delete Data",
 		};

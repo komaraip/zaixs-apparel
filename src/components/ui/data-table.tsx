@@ -68,8 +68,11 @@ export function DataTable<TData, TValue>({
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [rowSelection, setRowSelection] = React.useState({}); const [isLoading, setIsLoading] = React.useState(false);
+  const [categories, setCategories] = React.useState([]);
+  const [brands, setBrands] = React.useState([]);
+  const [locations, setLocations] = React.useState([]);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const table = useReactTable({
     data,
@@ -89,6 +92,76 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
+  const fetchProductResources = async () => {
+    if (formType === "products") {
+      setIsLoading(true);
+      try {
+        // Fetch categories, brands, and locations
+        const [categoriesRes, brandsRes, locationsRes] = await Promise.all([
+          fetch('/api/categories'),
+          fetch('/api/brands'),
+          fetch('/api/locations')
+        ]);
+
+        if (categoriesRes.ok && brandsRes.ok && locationsRes.ok) {
+          const [categoriesData, brandsData, locationsData] = await Promise.all([
+            categoriesRes.json(),
+            brandsRes.json(),
+            locationsRes.json()
+          ]);
+
+          setCategories(categoriesData);
+          setBrands(brandsData);
+          setLocations(locationsData);
+          // console.log("Resources loaded:", {
+          //   categories: categoriesData.length,
+          //   brands: brandsData.length,
+          //   locations: locationsData.length
+          // });
+        } else {
+          console.error("Error fetching resources:", {
+            categories: categoriesRes.status,
+            brands: brandsRes.status,
+            locations: locationsRes.status
+          });
+        }
+      } catch (error) {
+        console.error("Error loading product form data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+  // Custom wrapper for product form with dialog closing capability
+  const ProductFormWithDialog = () => {
+    // This effect listens for form submission success messages from the FormProduct component
+    React.useEffect(() => {
+      const handleFormSuccess = (event: CustomEvent) => {
+        if (event.detail && event.detail.success) {
+          // console.log("Form submission detected, closing dialog");
+          setTimeout(() => {
+            setDialogOpen(false);
+          }, 500);
+        }
+      };
+
+      window.addEventListener('productFormSubmitted', handleFormSuccess as EventListener);
+
+      return () => {
+        window.removeEventListener('productFormSubmitted', handleFormSuccess as EventListener);
+      };
+    }, []);
+
+    return (
+      <FormProduct
+        type="ADD"
+        categories={categories}
+        brands={brands}
+        locations={locations}
+      />
+    );
+  };
+
   const renderForm = () => {
     switch (formType) {
       case "categories":
@@ -98,7 +171,7 @@ export function DataTable<TData, TValue>({
       case "brands":
         return <FormBrand type="ADD" />;
       case "products":
-        return <FormProduct type="ADD" />;
+        return <ProductFormWithDialog />;
       default:
         return null;
     }
@@ -115,40 +188,47 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
           suppressHydrationWarning={true}
-        />
-
+        />        
         {(formType === "categories" ||
           formType === "locations" ||
           formType === "brands" ||
           formType === "products") && (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="ml-4">
-                <PlusCircle className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only">Add New</span>
-              </Button>
-            </DialogTrigger>{" "}
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>
-                  Create New{" "}
-                  {formType.charAt(0).toUpperCase() + formType.slice(1)}
-                </DialogTitle>
-                <DialogDescription>
-                  Fill in the details below to create a new {formType}.
-                </DialogDescription>
-              </DialogHeader>
-              {formType === "products" && isLoading ? (
-                <div className="flex items-center justify-center p-6">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                  <span className="ml-2">Loading data...</span>
-                </div>
-              ) : (
-                renderForm()
-              )}
-            </DialogContent>
-          </Dialog>
-        )}
+            <Dialog
+              open={dialogOpen}
+              onOpenChange={(open) => {
+                setDialogOpen(open);
+                if (open && formType === "products") {
+                  fetchProductResources();
+                }
+              }}
+            >
+              <DialogTrigger asChild>
+                <Button variant="outline" className="ml-4">
+                  <PlusCircle className="h-3.5 w-3.5" />
+                  <span className="sr-only sm:not-sr-only">Add New</span>
+                </Button>
+              </DialogTrigger>{" "}
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>
+                    Create New{" "}
+                    {formType.charAt(0).toUpperCase() + formType.slice(1)}
+                  </DialogTitle>
+                  <DialogDescription>
+                    Fill in the details below to create a new {formType}.
+                  </DialogDescription>
+                </DialogHeader>
+                {formType === "products" && isLoading ? (
+                  <div className="flex items-center justify-center p-6">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <span className="ml-2">Loading data...</span>
+                  </div>
+                ) : (
+                  renderForm()
+                )}
+              </DialogContent>
+            </Dialog>
+          )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -195,9 +275,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}

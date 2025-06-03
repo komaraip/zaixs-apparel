@@ -105,7 +105,7 @@ export async function POST(request: Request) {
         return Response.json(response)
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Response.json({status: false}, {status: 500})
     }
 }

@@ -16,6 +16,7 @@ export async function getProducts() {
                 },
                 name: true,
                 create_at: true,
+                updated_at: true,
                 price: true,
                 stock: true,
                 category: {
@@ -37,6 +38,7 @@ export async function getProducts() {
                 brand_name: product.brand.name,
                 category_name: product.category.name,
                 createdAt: product.create_at,
+                updatedAt: product.updated_at,
                 image_url: product.images[0],
                 id: product.id,
                 name: product.name,

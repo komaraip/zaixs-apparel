@@ -7,9 +7,6 @@ import {
 } from "@/components/ui/card";
 import { columns } from "./columns";
 import { getBrands } from "./lib/data";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { PlusCircle } from "lucide-react";
 import { DataTable } from "@/components/ui/data-table";
 
 export default async function DashboardPage() {

@@ -7,9 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getProducts } from "./lib/data";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { PlusCircle } from "lucide-react";
 import { columns } from "./columns";
 
 export default async function DashboardPage() {
