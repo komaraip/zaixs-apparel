@@ -173,7 +173,8 @@ export function DataTable<TData, TValue>({
       default:
         return null;
     }
-  };
+  };  
+  
   // Helper function to get the filter column and placeholder based on form type
   const getFilterConfig = () => {
     switch (formType) {
@@ -184,7 +185,7 @@ export function DataTable<TData, TValue>({
         };
       case "customers":
         return {
-          columnId: "customer_name",
+          columnId: "name",
           placeholder: "Filter customer name..."
         };
       default:

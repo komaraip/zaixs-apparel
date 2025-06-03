@@ -1,8 +1,8 @@
 "use client"
 
 import { ActionResult } from '@/types';
-import React, { useState } from 'react'
-import { useFormState, useFormStatus } from 'react-dom';
+import React, { useActionState, useState } from 'react'
+import { useFormStatus } from 'react-dom';
 import { signUp } from '../lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ function SubmitButton() {
 
 export default function SignUpPage() {
 
-    const [state, formAction] = useFormState(signUp, initialFormState);
+    const [state, formAction] = useActionState(signUp, initialFormState);
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = (e: React.MouseEvent) => {
@@ -37,9 +37,8 @@ export default function SignUpPage() {
 
   return (
     <div id="signin" className="bg-[#EFF3FA] min-h-screen pt-[30px] pb-[50px] flex flex-1">
-        <div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center py-5">
-            <div className="flex justify-center mb-8">
-                <Image src="assets/logos/logo-za.png" alt="logo" className="w-[300px] h-auto"/>
+        <div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center py-5">            <div className="flex justify-center mb-8">
+                <Image src="/assets/logos/logo-za.png" alt="logo" width={300} height={100} className="w-[300px] h-auto"/>
             </div>
 
             <form action={formAction} className="w-[500px] bg-white p-[30px_30px] flex flex-col gap-8 rounded-3xl border border-[#E5E5E5]">
@@ -51,24 +50,20 @@ export default function SignUpPage() {
                             <h4 className="font-semibold">Error</h4>
                             <p className="text-sm">{state.error}</p>
                         </div>
-                    )}
-
-                <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
+                    )}                <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
                     <div className="flex shrink-0">
-                        <Image src="assets/icons/profile-circle.svg" alt="icon" />
+                        <Image src="/assets/icons/profile-circle.svg" alt="icon" width={20} height={20} />
                     </div>
                     <input type="text" id="name" name="name" className="appearance-none outline-none w-full placeholder:text-[#616369] placeholder:font-normal font-semibold text-black" placeholder="Full Name" />
-                </div>
-                <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
+                </div>                <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
                     <div className="flex shrink-0">
-                        <Image src="assets/icons/sms.svg" alt="icon" />
+                        <Image src="/assets/icons/sms.svg" alt="icon" width={20} height={20} />
                     </div>
                     <input type="email" id="email" name="email" className="appearance-none outline-none w-full placeholder:text-[#616369] placeholder:font-normal font-semibold text-black" placeholder="Email Address" />
                 </div>
-                <div className="flex flex-col gap-[10px]">
-                    <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
+                <div className="flex flex-col gap-[10px]">                    <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
                         <div className="flex shrink-0">
-                            <Image src="assets/icons/lock.svg" alt="icon" />
+                            <Image src="/assets/icons/lock.svg" alt="icon" width={20} height={20} />
                         </div>
                         <input 
                             type={showPassword ? "text" : "password"} 
@@ -76,16 +71,17 @@ export default function SignUpPage() {
                             name="password" 
                             className="appearance-none outline-none w-full placeholder:text-[#616369] placeholder:font-normal font-semibold text-black" 
                             placeholder="Password" 
-                        />
-                        <button 
+                        />                        <button 
                             onClick={togglePasswordVisibility} 
                             type="button" 
                             className="reveal-password flex shrink-0"
                             aria-label={showPassword ? "Hide password" : "Show password"}
                         >
                             <Image 
-                                src={showPassword ? "assets/icons/eye.svg" : "assets/icons/eye.svg"} 
+                                src={showPassword ? "/assets/icons/eye.svg" : "/assets/icons/eye.svg"} 
                                 alt={showPassword ? "Hide password" : "Show password"} 
+                                width={20}
+                                height={20}
                             />
                         </button>
                     </div>

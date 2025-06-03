@@ -13,8 +13,7 @@ export async function getCustomers() {
                         orders: true
                     }
                 }
-            }
-        })
+            }        })
 
         const response: TColumn[] = customers.map((cust) => {
             return {
@@ -22,6 +21,7 @@ export async function getCustomers() {
                 name: cust.name,
                 email: cust.email,
                 total_transactions: cust._count.orders,
+                create_at: cust.create_at,
             }
         })
 
