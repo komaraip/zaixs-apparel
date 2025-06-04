@@ -16,24 +16,21 @@ export async function SectionCards() {
   const stats = await getDashboardStats();
   return (
     <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-5 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      {" "}
-      <Card className="@container/card">
-        <CardHeader>
+      {" "}      <Card className="@container/card">
+        <CardHeader className="relative">
           <CardDescription>Total Revenue</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {rupiahFormat(stats.totalRevenue)}
           </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              {stats.revenueGrowth >= 0 ? (
-                <IconTrendingUp />
-              ) : (
-                <IconTrendingDown />
-              )}
-              {stats.revenueGrowth >= 0 ? "+" : ""}
-              {stats.revenueGrowth.toFixed(1)}%
-            </Badge>
-          </CardAction>
+          <Badge variant="outline" className="absolute top-4 right-4">
+            {stats.revenueGrowth >= 0 ? (
+              <IconTrendingUp />
+            ) : (
+              <IconTrendingDown />
+            )}
+            {stats.revenueGrowth >= 0 ? "+" : ""}
+            {stats.revenueGrowth.toFixed(1)}%
+          </Badge>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
@@ -49,24 +46,21 @@ export async function SectionCards() {
             Revenue for the last 30 days
           </div>
         </CardFooter>
-      </Card>{" "}
-      <Card className="@container/card">
-        <CardHeader>
+      </Card>{" "}      <Card className="@container/card">
+        <CardHeader className="relative">
           <CardDescription>Total Orders</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {stats.totalOrders.toLocaleString()}
           </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              {stats.ordersGrowth >= 0 ? (
-                <IconTrendingUp />
-              ) : (
-                <IconTrendingDown />
-              )}
-              {stats.ordersGrowth >= 0 ? "+" : ""}
-              {stats.ordersGrowth.toFixed(1)}%
-            </Badge>
-          </CardAction>
+          <Badge variant="outline" className="absolute top-4 right-4">
+            {stats.ordersGrowth >= 0 ? (
+              <IconTrendingUp />
+            ) : (
+              <IconTrendingDown />
+            )}
+            {stats.ordersGrowth >= 0 ? "+" : ""}
+            {stats.ordersGrowth.toFixed(1)}%
+          </Badge>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
@@ -83,24 +77,21 @@ export async function SectionCards() {
               : "Sales need attention"}
           </div>
         </CardFooter>
-      </Card>{" "}
-      <Card className="@container/card">
-        <CardHeader>
+      </Card>{" "}      <Card className="@container/card">
+        <CardHeader className="relative">
           <CardDescription>Total Customers</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {stats.totalCustomers.toLocaleString()}
           </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              {stats.customersGrowth >= 0 ? (
-                <IconTrendingUp />
-              ) : (
-                <IconTrendingDown />
-              )}
-              {stats.customersGrowth >= 0 ? "+" : ""}
-              {stats.customersGrowth.toFixed(1)}%
-            </Badge>
-          </CardAction>
+          <Badge variant="outline" className="absolute top-4 right-4">
+            {stats.customersGrowth >= 0 ? (
+              <IconTrendingUp />
+            ) : (
+              <IconTrendingDown />
+            )}
+            {stats.customersGrowth >= 0 ? "+" : ""}
+            {stats.customersGrowth.toFixed(1)}%
+          </Badge>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
@@ -119,24 +110,21 @@ export async function SectionCards() {
               : "Focus on retention"}
           </div>
         </CardFooter>{" "}
-      </Card>
-      <Card className="@container/card">
-        <CardHeader>
+      </Card>      <Card className="@container/card">
+        <CardHeader className="relative">
           <CardDescription>Total Products</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {stats.totalProducts.toLocaleString()}
           </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              {stats.productsGrowth >= 0 ? (
-                <IconTrendingUp />
-              ) : (
-                <IconTrendingDown />
-              )}
-              {stats.productsGrowth >= 0 ? "+" : ""}
-              {stats.productsGrowth.toFixed(1)}%
-            </Badge>
-          </CardAction>
+          <Badge variant="outline" className="absolute top-4 right-4">
+            {stats.productsGrowth >= 0 ? (
+              <IconTrendingUp />
+            ) : (
+              <IconTrendingDown />
+            )}
+            {stats.productsGrowth >= 0 ? "+" : ""}
+            {stats.productsGrowth.toFixed(1)}%
+          </Badge>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
@@ -154,24 +142,21 @@ export async function SectionCards() {
               ? "New products added"
               : "Catalog management"}
           </div>        </CardFooter>
-      </Card>{" "}
-      <Card className="@container/card">
-        <CardHeader>
+      </Card>{" "}      <Card className="@container/card">
+        <CardHeader className="relative">
           <CardDescription>Total Brands</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {stats.totalBrands.toLocaleString()}
           </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              {stats.brandsGrowth >= 0 ? (
-                <IconTrendingUp />
-              ) : (
-                <IconTrendingDown />
-              )}
-              {stats.brandsGrowth >= 0 ? "+" : ""}
-              {stats.brandsGrowth.toFixed(1)}%
-            </Badge>
-          </CardAction>
+          <Badge variant="outline" className="absolute top-4 right-4">
+            {stats.brandsGrowth >= 0 ? (
+              <IconTrendingUp />
+            ) : (
+              <IconTrendingDown />
+            )}
+            {stats.brandsGrowth >= 0 ? "+" : ""}
+            {stats.brandsGrowth.toFixed(1)}%
+          </Badge>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">

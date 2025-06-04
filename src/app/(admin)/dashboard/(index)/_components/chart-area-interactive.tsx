@@ -76,17 +76,19 @@ export function ChartAreaInteractive() {
     startDate.setDate(startDate.getDate() - daysToSubtract)
     return date >= startDate
   })
-
   return (
     <Card className="@container/card">
-      <CardHeader>
-        <CardTitle>Revenue & Orders</CardTitle>
-        <CardDescription>
-          <span className="hidden @[540px]/card:block">
-            Daily revenue and order trends
-          </span>
-          <span className="@[540px]/card:hidden">Daily revenue and order trends</span>
-        </CardDescription>        <CardAction>
+      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
+        <div className="space-y-1">
+          <CardTitle>Revenue & Orders</CardTitle>
+          <CardDescription>
+            <span className="hidden @[540px]/card:block">
+              Daily revenue and order trends
+            </span>
+            <span className="@[540px]/card:hidden">Daily revenue and order trends</span>
+          </CardDescription>
+        </div>
+        <div className="flex items-center space-x-2">
           <ToggleGroup
             type="single"
             value={timeRange}
@@ -118,7 +120,7 @@ export function ChartAreaInteractive() {
               </SelectItem>
             </SelectContent>
           </Select>
-        </CardAction>
+        </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">        
         <ChartContainer
