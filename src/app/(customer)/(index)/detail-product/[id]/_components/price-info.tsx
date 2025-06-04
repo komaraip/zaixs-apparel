@@ -37,34 +37,33 @@ export default function PriceInfo({item, isLogIn}: PriceInfoProp) {
                     <p className="font-semibold">Brand New</p>
                     <p className="font-bold text-[28px] leading-[48px]">{rupiahFormat(item.price)}</p>
                 </div>
-                <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2">
+                <div className="flex flex-col gap-4">                    <div className="flex items-center gap-2">
                         <div className="flex shrink-0">
-                            <Image src="/assets/icons/tick-circle.svg" alt="icon" />
+                            <Image src="/assets/icons/tick-circle.svg" alt="icon" width={24} height={24} />
                         </div>
                         <p className="font-semibold">Peti telur packaging</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="flex shrink-0">
-                            <Image src="/assets/icons/tick-circle.svg" alt="icon" />
+                            <Image src="/assets/icons/tick-circle.svg" alt="icon" width={24} height={24} />
                         </div>
                         <p className="font-semibold">Manual book instructions</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="flex shrink-0">
-                            <Image src="/assets/icons/tick-circle.svg" alt="icon" />
+                            <Image src="/assets/icons/tick-circle.svg" alt="icon" width={24} height={24} />
                         </div>
                         <p className="font-semibold">Customer service 24/7</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="flex shrink-0">
-                            <Image src="/assets/icons/tick-circle.svg" alt="icon" />
+                            <Image src="/assets/icons/tick-circle.svg" alt="icon" width={24} height={24} />
                         </div>
                         <p className="font-semibold">Free delivery Jababeka</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="flex shrink-0">
-                            <Image src="/assets/icons/tick-circle.svg" alt="icon" />
+                            <Image src="/assets/icons/tick-circle.svg" alt="icon" width={24} height={24} />
                         </div>
                         <p className="font-semibold">Kwitansi orisinal 100%</p>
                     </div>
@@ -76,17 +75,15 @@ export default function PriceInfo({item, isLogIn}: PriceInfoProp) {
             </div>
             <a href="">
                 <div className="w-full bg-white border border-[#E5E5E5] flex items-center justify-between gap-2 p-5 rounded-3xl">
-                    <div className="flex items-center gap-[10px]">
-                        <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                            <Image src="/assets/icons/cake.svg" alt="icon" />
+                    <div className="flex items-center gap-[10px]">                        <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
+                            <Image src="/assets/icons/cake.svg" alt="icon" width={24} height={24} />
                         </div>
                         <div className="flex flex-col gap-[2px]">
                             <p className="font-semibold">Buy as a Gift</p>
                             <p className="text-sm">Free Delivery</p>
                         </div>
-                    </div>
-                    <div className="flex shrink-0">
-                        <Image src="/assets/icons/arrow-right.svg" alt="icon" />
+                    </div>                    <div className="flex shrink-0">
+                        <Image src="/assets/icons/arrow-right.svg" alt="icon" width={24} height={24} />
                     </div>
                 </div>
             </a>

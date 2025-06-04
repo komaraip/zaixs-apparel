@@ -44,22 +44,21 @@ export default async function DetailProductPage(props: PageProps) {
             </div>
             <h1 className="font-bold text-4xl leading-9">{product.name}</h1>
         </div>
-        <div className="flex items-center gap-2 justify-end">
-            <div className="flex items-center">
+        <div className="flex items-center gap-2 justify-end">            <div className="flex items-center">
                 <div className="flex shrink-0">
-                    <Image src="/assets/icons/Star.svg" alt="star" />
+                    <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                 </div>
                 <div className="flex shrink-0">
-                    <Image src="/assets/icons/Star.svg" alt="star" />
+                    <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                 </div>
                 <div className="flex shrink-0">
-                    <Image src="/assets/icons/Star.svg" alt="star" />
+                    <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                 </div>
                 <div className="flex shrink-0">
-                    <Image src="/assets/icons/Star.svg" alt="star" />
+                    <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                 </div>
                 <div className="flex shrink-0">
-                    <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                    <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                 </div>
             </div>
             <p className="font-semibold">({product._count.orders})</p>
@@ -67,30 +66,26 @@ export default async function DetailProductPage(props: PageProps) {
     </div>
     <CarouseImages images={product.images} />
     <div id="details-benefits" className="container max-w-[1130px] mx-auto flex items-center gap-[50px] justify-center mt-[50px]">
-        <div className="flex items-center gap-[10px]">
-            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                <Image src="/assets/icons/star-outline.svg" alt="icon" />
+        <div className="flex items-center gap-[10px]">            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
+                <Image src="/assets/icons/star-outline.svg" alt="icon" width={25} height={24} />
             </div>
             <p className="font-semibold text-sm">Include Official <br /> Warranty</p>
         </div>
         <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                <Image src="/assets/icons/code-circle.svg" alt="icon" />
+        <div className="flex items-center gap-[10px]">            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
+                <Image src="/assets/icons/code-circle.svg" alt="icon" width={24} height={24} />
             </div>
             <p className="font-semibold text-sm">Bonus Mac OS <br /> Capitan Pro</p>
         </div>
         <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                <Image src="/assets/icons/like.svg" alt="icon" />
+        <div className="flex items-center gap-[10px]">            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
+                <Image src="/assets/icons/like.svg" alt="icon" width={25} height={24} />
             </div>
             <p className="font-semibold text-sm">100% Original <br /> From Factory</p>
         </div>
         <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                <Image src="/assets/icons/tag.svg" alt="icon" />
+        <div className="flex items-center gap-[10px]">            <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
+                <Image src="/assets/icons/tag.svg" alt="icon" width={25} height={24} />
             </div>
             <p className="font-semibold text-sm">Free Tax On <br /> Every Sale</p>
         </div>
@@ -109,25 +104,24 @@ export default async function DetailProductPage(props: PageProps) {
                     <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
                         <div className="flex">
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                         </div>
-                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                        <div className="flex items-center gap-[10px]">
+                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>                        <div className="flex items-center gap-[10px]">
                             <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                                <Image src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" />
+                                <Image src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" width={50} height={50} />
                             </div>
                             <div className="flex flex-col gap-[2px]">
                                 <p className="font-semibold text-sm leading-[22px]">Angga Risky</p>
@@ -138,25 +132,24 @@ export default async function DetailProductPage(props: PageProps) {
                     <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
                         <div className="flex">
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                         </div>
-                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                        <div className="flex items-center gap-[10px]">
+                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>                        <div className="flex items-center gap-[10px]">
                             <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                                <Image src="/assets/photos/p4.png" className="w-full h-full object-cover rounded-full" alt="photo" />
+                                <Image src="/assets/photos/p4.png" className="w-full h-full object-cover rounded-full" alt="photo" width={50} height={50} />
                             </div>
                             <div className="flex flex-col gap-[2px]">
                                 <p className="font-semibold text-sm leading-[22px]">Sarifuding</p>
@@ -167,25 +160,24 @@ export default async function DetailProductPage(props: PageProps) {
                     <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
                         <div className="flex">
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                         </div>
-                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                        <div className="flex items-center gap-[10px]">
+                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>                        <div className="flex items-center gap-[10px]">
                             <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                                <Image src="/assets/photos/p3.png" className="w-full h-full object-cover rounded-full" alt="photo" />
+                                <Image src="/assets/photos/p3.png" className="w-full h-full object-cover rounded-full" alt="photo" width={50} height={50} />
                             </div>
                             <div className="flex flex-col gap-[2px]">
                                 <p className="font-semibold text-sm leading-[22px]">Ika Nurina</p>
@@ -196,25 +188,24 @@ export default async function DetailProductPage(props: PageProps) {
                     <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
                         <div className="flex">
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                         </div>
-                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                        <div className="flex items-center gap-[10px]">
+                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>                        <div className="flex items-center gap-[10px]">
                             <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                                <Image src="/assets/photos/p1.png" className="w-full h-full object-cover rounded-full" alt="photo" />
+                                <Image src="/assets/photos/p1.png" className="w-full h-full object-cover rounded-full" alt="photo" width={50} height={50} />
                             </div>
                             <div className="flex flex-col gap-[2px]">
                                 <p className="font-semibold text-sm leading-[22px]">Sami Mami</p>
@@ -225,25 +216,24 @@ export default async function DetailProductPage(props: PageProps) {
                     <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
                         <div className="flex">
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star.svg" alt="star" />
+                                <Image src="/assets/icons/Star.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                             <div className="flex shrink-0">
-                                <Image src="/assets/icons/Star-gray.svg" alt="star" />
+                                <Image src="/assets/icons/Star-gray.svg" alt="star" width={20} height={19} />
                             </div>
                         </div>
-                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                        <div className="flex items-center gap-[10px]">
+                        <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>                        <div className="flex items-center gap-[10px]">
                             <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                                <Image src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" />
+                                <Image src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" width={50} height={50} />
                             </div>
                             <div className="flex flex-col gap-[2px]">
                                 <p className="font-semibold text-sm leading-[22px]">Baronia</p>
