@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { SectionCards } from "./_components/section-cards";
 import { ChartAreaInteractive } from "./_components/chart-area-interactive";
-import { DataTable } from "./_components/data-table";
-import data from "./data.json"
+import { RecentOrders } from "./_components/recent-orders";
 
 export default async function DashboardPage() {
   return (
@@ -19,7 +12,10 @@ export default async function DashboardPage() {
         <div className="px-4 lg:px-6">
           <ChartAreaInteractive />
         </div>
-        <DataTable data={data} />
+        
+        <div className="px-4 lg:px-6">
+          <RecentOrders />
+        </div>
       </div>
     </div>
   );

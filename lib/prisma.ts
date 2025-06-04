@@ -39,36 +39,12 @@
 
 // export default prisma
 
-//          CODE THREE
+//          CODE THREE (Fixed for Next.js)
 import { PrismaClient } from "@prisma/client";
-import fs from 'fs';
-import path from 'path';
 
 declare global {
   var prisma: PrismaClient | undefined
 }
-
-const loadEnvVars = () => {
-  if (!process.env.DATABASE_URL) {
-    try {
-      const envFile = fs.readFileSync(path.join(process.cwd(), '.env'), 'utf-8');
-      
-      envFile.split('\n').forEach((line: string) => {
-        const match = line.match(/^(\w+)=(.*)$/);
-        if (match) {
-          const [, key, value] = match;
-          if (key && !process.env[key]) {
-            process.env[key] = value.replace(/^["']|["']$/g, '');
-          }
-        }
-      });
-    } catch (error) {
-      console.warn('Failed to load .env file directly:', error);
-    }
-  }
-};
-
-loadEnvVars();
 
 let prisma: PrismaClient;
 
