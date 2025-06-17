@@ -3,35 +3,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import UserDropdown from './user-dropdown'
+import NavMenu from './nav-menu-border'
 
 export default async function Navbar() {
     const {session, user} = await getUser()
 
-    return (
+    return (        
         <nav className="container max-w-[1130px] mx-auto flex items-center justify-between bg-[#0D5CD7] p-5 rounded-3xl">
             <div className="flex shrink-0">
-                <Image src="/assets/logos/logo.svg" alt="icon" width={157} height={42} />
+                <Image src="/assets/logos/logoza.png" alt="icon" width={157} height={42} />
             </div>
-            <ul className="flex items-center gap-[30px]">
-                <li className="hover:font-bold hover:text-[#FFC736] transition-all duration-300 font-bold text-[#FFC736]">
-                    <Link href="/catalogs">Shop</Link>
-                </li>
-                <li className="hover:font-bold hover:text-[#FFC736] transition-all duration-300 text-white">
-                    <Link href="/">Categories</Link>
-                </li>
-                <li className="hover:font-bold hover:text-[#FFC736] transition-all duration-300 text-white">
-                    <Link href="/">Testimonials</Link>
-                </li>
-                <li className="hover:font-bold hover:text-[#FFC736] transition-all duration-300 text-white">
-                    <Link href="/">Rewards</Link>
-                </li>
-            </ul>
+            <NavMenu />
             <div className="flex items-center gap-3">
                 <Link href="/carts">
                     <div className="w-12 h-12 flex shrink-0">
                         <Image src="/assets/icons/cart.svg" alt="icon" width={48} height={48} />
                     </div>
-                </Link>                {session && user.role === "customer" ? (
+                </Link>                
+                {session && user.role === "customer" ? (
                     <UserDropdown 
                         firstName={user.name.split(' ')[0]} 
                         lastName={user.name.split(' ')[1]} 

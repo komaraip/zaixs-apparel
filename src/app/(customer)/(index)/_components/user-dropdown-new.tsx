@@ -51,7 +51,7 @@ export default function UserDropdown({ firstName, lastName, avatarUrl }: UserDro
                 <p className="text-white">Hi, {firstName} {lastName || ''}</p>
                 <div className="w-[48px] h-[48px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
                     <Image 
-                        src={avatarUrl || '/assets/photos/p4.png'} 
+                        src={avatarUrl || '/assets/photos/avatar-default.jpg'} 
                         className="w-full h-full object-cover rounded-full" 
                         alt="photo" 
                         width={48} 

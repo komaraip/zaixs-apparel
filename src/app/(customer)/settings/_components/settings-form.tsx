@@ -25,7 +25,7 @@ export default function SettingsForm({ user }: SettingsFormProps) {
         confirmPassword: ''
     })
     const [avatarPreview, setAvatarPreview] = useState<string | null>(
-        user.avatar || '/assets/photos/p4.png'
+        user.avatar || '/assets/photos/avatar-default.jpg'
     )
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,6 +141,37 @@ export default function SettingsForm({ user }: SettingsFormProps) {
         }
     }
 
+    const handleDeleteAccount = async () => {
+        const confirmed = window.confirm(
+            'Are you sure you want to delete your account? This action cannot be undone and will permanently delete all your data.'
+        )
+
+        if (!confirmed) return
+
+        setIsLoading(true)
+        setMessage('')
+
+        try {
+            const response = await fetch('/api/user/delete-account', {
+                method: 'DELETE'
+            })
+
+            if (response.ok) {
+                setMessage('Account deleted successfully. You will be redirected to the homepage.')
+                setTimeout(() => {
+                    window.location.href = '/'
+                }, 2000)
+            } else {
+                const error = await response.json()
+                setMessage(error.message || 'An error occurred while deleting account')
+            }
+        } catch (error) {
+            setMessage('An error occurred while deleting account')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     return (
         <div className="space-y-8">
             {message && (
@@ -160,7 +191,7 @@ export default function SettingsForm({ user }: SettingsFormProps) {
                     <div className="flex items-center space-x-6">
                         <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
                             <Image
-                                src={avatarPreview || '/assets/photos/p4.png'}
+                                src={avatarPreview || '/assets/photos/avatar-default.jpg'}
                                 alt="Profile"
                                 width={96}
                                 height={96}
@@ -289,6 +320,21 @@ export default function SettingsForm({ user }: SettingsFormProps) {
                         {isLoading ? 'Updating...' : 'Update Password'}
                     </button>
                 </form>
+            </div>
+
+            {/* Delete Account Section */}
+            <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+                <h2 className="text-lg font-semibold text-red-900 mb-4">Danger Zone</h2>
+                <p className="text-red-700 mb-4">
+                    Once you delete your account, there is no going back. Please be certain.
+                </p>
+                <button
+                    onClick={handleDeleteAccount}
+                    disabled={isLoading}
+                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 transition-colors"
+                >
+                    {isLoading ? 'Deleting...' : 'Delete Account'}
+                </button>
             </div>
         </div>
     )

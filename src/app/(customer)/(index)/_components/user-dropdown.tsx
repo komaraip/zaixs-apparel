@@ -49,13 +49,14 @@ export default function UserDropdown({ firstName, lastName, avatarUrl }: UserDro
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-                <p className="text-white">Hi, {firstName} {lastName || ''}</p>                <div className="w-[48px] h-[48px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <Image 
-                        src={avatarUrl || '/assets/photos/p4.png'} 
-                        className="w-full h-full object-cover rounded-full" 
-                        alt="photo" 
-                        width={48} 
-                        height={48} 
+                <p className="text-white">Hi, {firstName} {lastName || ''}</p>
+                <div className="w-[48px] h-[48px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
+                    <Image
+                        src={avatarUrl || '/assets/photos/avatar-default.jpg'}
+                        className="w-full h-full object-cover rounded-full"
+                        alt="photo"
+                        width={48}
+                        height={48}
                     />
                 </div>
                 <svg 
