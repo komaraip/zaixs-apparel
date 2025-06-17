@@ -2,6 +2,7 @@ import { getUser } from '@/lib/auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import UserDropdown from './user-dropdown'
 
 export default async function Navbar() {
     const {session, user} = await getUser()
@@ -30,14 +31,12 @@ export default async function Navbar() {
                     <div className="w-12 h-12 flex shrink-0">
                         <Image src="/assets/icons/cart.svg" alt="icon" width={48} height={48} />
                     </div>
-                </Link>
-                {session && user.role === "customer" ? (
-                    <>
-                        <p className="text-white">Hi, {user.name}</p>
-                        <div className="w-[48px] h-[48px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                            <Image src="/assets/photos/p4.png" className="w-full h-full object-cover rounded-full" alt="photo" width={48} height={48} />
-                        </div>
-                    </>
+                </Link>                {session && user.role === "customer" ? (
+                    <UserDropdown 
+                        firstName={user.name.split(' ')[0]} 
+                        lastName={user.name.split(' ')[1]} 
+                        avatarUrl={user.avatar || null}
+                    />
                 ) : (
                     <>
                         <Link href="/sign-in" className="p-[12px_20px] bg-white rounded-full font-semibold">

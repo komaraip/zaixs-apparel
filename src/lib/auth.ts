@@ -14,13 +14,13 @@ export const lucia = new Lucia(adapter, {
         attributes: {
             secure: process.env.NODE_ENV === "production"
         }
-    },
-    getUserAttributes: (attributes) => {
+    },    getUserAttributes: (attributes) => {
         return {
             id: attributes.id,
             name: attributes.name,
             email: attributes.email,
             role: attributes.role,
+            avatar: attributes.avatar,
         }
     }
 })
@@ -54,12 +54,13 @@ export const getUser = cache(
 declare module "lucia" {
     interface Register {
         Lucia: typeof lucia
-        UserId: number;
+        UserId: number;        
         DatabaseUserAttributes: {
             id: number
             name: string
             email: string
             role: RoleUser
+            avatar: string | null
         }
     }
 }

@@ -25,6 +25,7 @@ model User {
   email    String   @unique @db.VarChar(255)
   password String   @db.VarChar(255)
   role     RoleUser @default(customer)
+  avatar   String?  @db.VarChar(255)
 
   orders    Order[]
   sessions  Session[]
