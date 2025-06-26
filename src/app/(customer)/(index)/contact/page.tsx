@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactForm from './_components/contact-form'
-import Navbar from '../(index)/_components/navbar'
+import Navbar from '../_components/navbar'
 
 export default function ContactPage() {
     return (
