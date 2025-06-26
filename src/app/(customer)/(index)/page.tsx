@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import Navbar from "./_components/navbar";
-import ListCategory from "./_components/list-category";
 import ListProducts from "./_components/list-products";
 import ListBrands from "./_components/list-brands";
 import Footer from "./_components/footer";
@@ -173,18 +172,12 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
-      <section
-        id="content"
-        className="container max-w-[1130px] mx-auto flex flex-col gap-[50px] pt-[50px] pb-[100px]"
-      >
-        <Suspense fallback={<span>Loading...</span>}>
-          <ListCategory />
-        </Suspense>
+      <section id="content" className="container max-w-[1130px] mx-auto flex flex-col gap-[50px] pt-[50px] pb-[100px]">
         <Suspense fallback={<span>Loading...</span>}>
           <ListProducts
             title={
               <>
-                Most Picked <br /> Quality Products
+                New Releases Quality Products
               </>
             }
           />
@@ -192,16 +185,6 @@ export default function LandingPage() {
 
         <Suspense fallback={<span>Loading...</span>}>
           <ListBrands />
-        </Suspense>
-
-        <Suspense fallback={<span>Loading...</span>}>
-          <ListProducts
-            title={
-              <>
-                New Releases <br /> From Official Stores
-              </>
-            }
-          />
         </Suspense>
       </section>
       <Footer />

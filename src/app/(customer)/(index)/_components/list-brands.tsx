@@ -9,7 +9,7 @@ export default async function ListBrands() {
   return (
     <div id="brands" className="flex flex-col gap-[30px]">
             <div className="flex items-center justify-between">
-                <h2 className="font-bold text-2xl leading-[34px]">Explore Our <br /> Popular Brands</h2>
+                <h2 className="font-bold text-2xl leading-[34px]">Explore Our Popular Brands</h2>
                 <a href="catalog.html" className="p-[12px_24px] border border-[#E5E5E5] rounded-full font-semibold">Explore All</a>
             </div>
             <div className="grid grid-cols-5 gap-[30px]">
