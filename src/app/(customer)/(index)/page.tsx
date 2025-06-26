@@ -174,17 +174,11 @@ export default function LandingPage() {
       </header>
       <section id="content" className="container max-w-[1130px] mx-auto flex flex-col gap-[50px] pt-[50px] pb-[100px]">
         <Suspense fallback={<span>Loading...</span>}>
-          <ListProducts
-            title={
-              <>
-                New Releases Quality Products
-              </>
-            }
-          />
-        </Suspense>
-
-        <Suspense fallback={<span>Loading...</span>}>
           <ListBrands />
+        </Suspense>
+        
+        <Suspense fallback={<span>Loading...</span>}>
+          <ListProducts />
         </Suspense>
       </section>
       <Footer />
